@@ -12,14 +12,16 @@ import { CreateComponent } from './pages/create/create.component';
 import { EditComponent } from './pages/edit/edit.component';
 import { ShowComponent } from './pages/show/show.component';
 
-import { ButtonsModule, WavesModule, CollapseModule } from 'angular-bootstrap-md'
+import { ButtonsModule, WavesModule, CollapseModule } from 'angular-bootstrap-md';
+import { DeleteComponent } from './pages/delete/delete.component'
 
 @NgModule({
   declarations: [
     EmployeesComponent,
     CreateComponent,
     EditComponent,
-    ShowComponent
+    ShowComponent,
+    DeleteComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +32,9 @@ import { ButtonsModule, WavesModule, CollapseModule } from 'angular-bootstrap-md
     ButtonsModule,
     WavesModule,
     CollapseModule
+  ],
+  entryComponents: [
+    DeleteComponent
   ]
 })
 export class EmployeesModule { }

@@ -1,0 +1,33 @@
+<!--Content-->
+<div class="modal-content text-center">
+  <!--Header-->
+  <div class="modal-header d-flex justify-content-center">
+    <p class="heading">Estás seguro de borrar {{ employee.name }}?</p>
+  </div>
+
+  <!--Body-->
+  <div class="modal-body">
+    <mdb-icon fas icon="times" size="4x" class="animated rotateIn"></mdb-icon>
+  </div>
+
+  <!--Footer-->
+  <div class="modal-footer justify-content-center">
+
+
+    <button type="button" mdbBtn color="ligth" (click)="onYesClick()" [hidden]="sending" mdbWavesEffect>
+      Si
+    </button>
+
+    <!-- Sending button -->
+    <button type="button" disabled [hidden]="!sending" mdbBtn color="danger" mdbWavesEffect>
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Eliminando...
+    </button>
+
+    <button type="button" data-dismiss="modal" (click)="DeleteEmployeeModalRef.hide()" [hidden]="sending" mdbBtn
+      color="danger" mdbWavesEffect>
+      No
+    </button>
+  </div>
+</div>
+<!--/.Content-->

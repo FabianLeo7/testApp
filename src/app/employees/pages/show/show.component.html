@@ -1,1 +1,153 @@
-<p>show works!</p>
+<div class="container">
+    <mdb-card>
+
+        <!--Card content-->
+        <mdb-card-body class="px-lg-5 pt-0">
+
+
+            <h4 class="mt-3 mb-3">Nuevo Empleado</h4>
+
+            <!-- Form -->
+            <form class="text-center">
+
+                <!-- Employee Data -->
+                <div class="form-row">
+                    <div class="col-6 col-md-6">
+                        <!-- Name -->
+                        <div class="md-form mt-3">
+                            <input type="text" id="userForm-name" [formControl]="name" class="form-control"
+                                [ngClass]="{'vld-danger': errors.name.length > 0}" mdbInput>
+                            <label for="userForm-name"
+                                [ngClass]="{'text-danger': errors.name.length > 0}">Nombre:</label>
+                            <div class="msg-danger" *ngFor="let error of errors.name">
+                                {{ errors.name }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <!-- Area -->
+                        <div class="md-form mt-3">
+                            area
+                            <div class="msg-danger" *ngFor="let error of errors.position">
+                                {{ errors.position }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-6 col-md-6">
+                        <!-- Date birth -->
+                        <div class="md-form mt-3">
+                            <div class="md-form">
+                                <input type="date" id="input" [formControl]="date_birth" class="form-control" [ngClass]="{'vld-danger': errors.date_birth.length > 0}" mdbInput>
+                                <label for="input" class="text-left">Fecha de Nacimiento:</label>
+                            </div>
+                            <div class="msg-danger" *ngFor="let error of errors.date_birth">
+                                {{ errors.date_birth }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <!-- Position -->
+                        <div class="md-form mt-3">
+                            <select class="browser-default custom-select mb-4" [formControl]="position" [ngClass]="{'vld-danger': errors.position.length > 0}">
+                                <option value="" disabled selected>Cargo:</option>
+                                <option value="Diseñador">Diseñador</option>
+                                <option value="Fundador y CEO">Fundador y CEO</option>
+                                <option value="Recursos humanos">Recursos humanos</option>
+                            </select>
+                            <div class="msg-danger" *ngFor="let error of errors.area">
+                                {{ errors.area }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-6 col-md-6">
+                        <!-- Country -->
+                        <div class="md-form mt-3">
+                            <select class="browser-default custom-select mb-4" [formControl]="country" [ngClass]="{'vld-danger': errors.country.length > 0}">
+                                <option value="" disabled selected>Country:</option>
+                                <option value="" *ngFor="let country of countries">{{ country.name }}</option>
+                            </select>
+                            <div class="msg-danger" *ngFor="let error of errors.country">
+                                {{ errors.country }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <!-- Commission -->
+                        <div class="md-form mt-3">
+                            <select class="browser-default custom-select mb-4" [formControl]="commission" [ngClass]="{'vld-danger': errors.commission.length > 0}">
+                                <option value="" disabled selected>Commission:</option>
+                                <option value="10">10%</option>
+                                <option value="20">20%</option>
+                                <option value="30">30%</option>
+                            </select>
+                            <div class="msg-danger" *ngFor="let error of errors.commission">
+                                {{ errors.commission }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-6 col-md-6">
+                        <!-- Username -->
+                        <div class="md-form mt-3">
+                            <input type="text" id="userForm-username" [formControl]="username" class="form-control"
+                                [ngClass]="{'vld-danger': errors.username.length > 0}" mdbInput>
+                            <label for="userForm-username"
+                                [ngClass]="{'text-danger': errors.username.length > 0}">Nombre de usuario:</label>
+                            <div class="msg-danger" *ngFor="let error of errors.username">
+                                {{ errors.username }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-6 col-md-6">
+                        <!-- Hiring Date -->
+                        <div class="md-form mt-3">
+                            <div class="md-form">
+                                <input type="date" id="input" [formControl]="hiring_date" class="form-control" [ngClass]="{'vld-danger': errors.hiring_date.length > 0}" mdbInput>
+                                <label for="input" class="text-left">Fecha de contratación:</label>
+                            </div>
+                            <div class="msg-danger" *ngFor="let error of errors.hiring_date">
+                                {{ errors.hiring_date }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-6 col-md-6">
+                        <!-- Status -->
+                        <div class="md-form mt-3">
+                            <input type="text" id="userForm-status" [formControl]="status" class="form-control"
+                                [ngClass]="{'vld-danger': errors.status.length > 0}" mdbInput>
+                            <label for="userForm-status"
+                                [ngClass]="{'text-danger': errors.status.length > 0}">Estado:</label>
+                            <div class="msg-danger" *ngFor="let error of errors.status">
+                                {{ errors.status }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Send button -->
+                <div class="text-left">
+                    <a [routerLink]="['/']" routerLinkActive="router-link-active" class="text-dark">
+                        < Atras </a>
+                </div>
+
+            </form>
+            <!-- //Form -->
+        </mdb-card-body>
+
+    </mdb-card>
+
+</div>
