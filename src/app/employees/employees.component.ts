@@ -78,6 +78,15 @@ export class EmployeesComponent implements OnInit {
   }
 
 
+  getAge(date_birth: Date){
+
+    var date_now = new Date();
+    var date_birth = new Date(date_birth);
+
+    return date_now.getFullYear() - date_birth.getFullYear();
+  }
+
+
   /**
    * Delete
    */

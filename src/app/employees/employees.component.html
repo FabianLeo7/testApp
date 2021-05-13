@@ -26,7 +26,7 @@
                         <p>{{employee.name}}</p>
                         <p>{{employee.position}}</p>
                     </th>
-                    <td>{{employee.date_birth}}</td>
+                    <td>{{ getAge(employee.date_birth) }}</td>
                     <td>{{employee.hiring_date}}</td>
                     <td>
                         <a [routerLink]="['/edit', employee.id]" routerLinkActive="router-link-active" mdbBtn
@@ -52,7 +52,7 @@
         </div>
     </div>
     <div class="text-center" *ngIf="employees.length == 0 && (sending == false)">
-        No hay productos
+        No hay empleados
     </div>
 
     <!-- Paginate -->

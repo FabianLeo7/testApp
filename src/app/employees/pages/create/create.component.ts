@@ -14,8 +14,10 @@ import { CountriesService } from 'src/app/services/countries/countries.service';
 export class CreateComponent implements OnInit {
 
   public validatingForm: any;
-
   public countries: any = [];
+
+  public message_success = '';
+  public message_error = '';
 
   public sending: boolean = false;
 
@@ -102,9 +104,17 @@ export class CreateComponent implements OnInit {
     return this.validatingForm.get('commission');
   }
 
+
+  setArea(data: string) {
+    this.validatingForm.get('area').value = data;
+  }
+
   onSubmit() {
 
     this.sending = true;
+    this.message_success = '';
+    this.message_error = '';
+
     this.errors = {
       name: [],
       date_birth: [],
@@ -127,6 +137,7 @@ export class CreateComponent implements OnInit {
 
   hanldeResponse(data: any) {
     this.sending = false;
+    this.message_success = 'Empleado guardado exitosamente.'
     this.createForm();
   }
 
@@ -134,11 +145,12 @@ export class CreateComponent implements OnInit {
     this.sending = false;
     if (error.status == 422) {
       this.setErrors(error.error.errors);
+      this.message_error = error.error.message;
 
     } else if (error.status == 500) {
-
+      this.message_error = 'Error: comunícate con el administrador.';
     } else if (error.status == 401) {
-
+      this.message_error = 'Sessión expirada';
     }
   }
 

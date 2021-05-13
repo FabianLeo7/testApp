@@ -1,5 +1,15 @@
 <div class="container">
+
     <mdb-card>
+
+        <!-- Messages -->
+        <div class="alert alert-success" role="alert" *ngIf="message_success != ''">
+            {{ message_success }}
+        </div>
+
+        <div class="alert alert-danger" role="alert" *ngIf="message_error != ''">
+            {{ message_error }}
+        </div>
 
         <!--Card content-->
         <mdb-card-body class="px-lg-5 pt-0">
@@ -27,7 +37,15 @@
                     <div class="col-6 col-md-6">
                         <!-- Area -->
                         <div class="md-form mt-3">
-                            area
+                            <label>Area:</label>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button mdbBtn type="button" size="sm" class="waves-light"
+                                    [ngClass]="{'bg-light': validatingForm.get('area').value == 'Administrativa'}"
+                                    (click)="setArea('Administrativa')" mdbWavesEffect>Administrativa</button>
+                                <button mdbBtn type="button" size="sm" class="waves-light"
+                                    [ngClass]="{'bg-light': validatingForm.get('area').value == 'Tecnología'}"
+                                    (click)="setArea('Tecnología')" mdbWavesEffect>Tecnología</button>
+                            </div>
                             <div class="msg-danger" *ngFor="let error of errors.position">
                                 {{ errors.position }}
                             </div>
@@ -40,7 +58,8 @@
                         <!-- Date birth -->
                         <div class="md-form mt-3">
                             <div class="md-form">
-                                <input type="date" id="input" [formControl]="date_birth" class="form-control" [ngClass]="{'vld-danger': errors.date_birth.length > 0}" mdbInput>
+                                <input type="date" id="input" [formControl]="date_birth" class="form-control"
+                                    [ngClass]="{'vld-danger': errors.date_birth.length > 0}" mdbInput>
                                 <label for="input" class="text-left">Fecha de Nacimiento:</label>
                             </div>
                             <div class="msg-danger" *ngFor="let error of errors.date_birth">
@@ -51,11 +70,18 @@
                     <div class="col-6 col-md-6">
                         <!-- Position -->
                         <div class="md-form mt-3">
-                            <select class="browser-default custom-select mb-4" [formControl]="position" [ngClass]="{'vld-danger': errors.position.length > 0}">
+                            <select class="browser-default custom-select mb-4" [formControl]="position"
+                                [ngClass]="{'vld-danger': errors.position.length > 0}">
                                 <option value="" disabled selected>Cargo:</option>
-                                <option value="Diseñador">Diseñador</option>
-                                <option value="Fundador y CEO">Fundador y CEO</option>
-                                <option value="Recursos humanos">Recursos humanos</option>
+                                <option value="Diseñador" *ngIf="validatingForm.get('area').value == 'Tecnología'">
+                                    Diseñador</option>
+                                <option value="Programador" *ngIf="validatingForm.get('area').value == 'Tecnología'">
+                                    Programador</option>
+                                <option value="Fundador y CEO"
+                                    *ngIf="validatingForm.get('area').value == 'Administrativa'">Fundador y CEO</option>
+                                <option value="Recursos humanos"
+                                    *ngIf="validatingForm.get('area').value == 'Administrativa'">Recursos humanos
+                                </option>
                             </select>
                             <div class="msg-danger" *ngFor="let error of errors.area">
                                 {{ errors.area }}
@@ -68,19 +94,22 @@
                     <div class="col-6 col-md-6">
                         <!-- Country -->
                         <div class="md-form mt-3">
-                            <select class="browser-default custom-select mb-4" [formControl]="country" [ngClass]="{'vld-danger': errors.country.length > 0}">
+                            <select class="browser-default custom-select mb-4" [formControl]="country"
+                                [ngClass]="{'vld-danger': errors.country.length > 0}">
                                 <option value="" disabled selected>Country:</option>
-                                <option value="" *ngFor="let country of countries">{{ country.name }}</option>
+                                <option [value]="country.name" *ngFor="let country of countries">{{ country.name }}
+                                </option>
                             </select>
                             <div class="msg-danger" *ngFor="let error of errors.country">
                                 {{ errors.country }}
                             </div>
                         </div>
                     </div>
-                    <div class="col-6 col-md-6">
+                    <div class="col-6 col-md-6" *ngIf="validatingForm.get('position').value == 'Fundador y CEO'">
                         <!-- Commission -->
                         <div class="md-form mt-3">
-                            <select class="browser-default custom-select mb-4" [formControl]="commission" [ngClass]="{'vld-danger': errors.commission.length > 0}">
+                            <select class="browser-default custom-select mb-4" [formControl]="commission"
+                                [ngClass]="{'vld-danger': errors.commission.length > 0}">
                                 <option value="" disabled selected>Commission:</option>
                                 <option value="10">10%</option>
                                 <option value="20">20%</option>
@@ -113,7 +142,8 @@
                         <!-- Hiring Date -->
                         <div class="md-form mt-3">
                             <div class="md-form">
-                                <input type="date" id="input" [formControl]="hiring_date" class="form-control" [ngClass]="{'vld-danger': errors.hiring_date.length > 0}" mdbInput>
+                                <input type="date" id="input" [formControl]="hiring_date" class="form-control"
+                                    [ngClass]="{'vld-danger': errors.hiring_date.length > 0}" mdbInput>
                                 <label for="input" class="text-left">Fecha de contratación:</label>
                             </div>
                             <div class="msg-danger" *ngFor="let error of errors.hiring_date">
@@ -126,11 +156,14 @@
                 <div class="form-row">
                     <div class="col-6 col-md-6">
                         <!-- Status -->
-                        <div class="md-form mt-3">
-                            <input type="text" id="userForm-status" [formControl]="status" class="form-control"
-                                [ngClass]="{'vld-danger': errors.status.length > 0}" mdbInput>
-                            <label for="userForm-status"
-                                [ngClass]="{'text-danger': errors.status.length > 0}">Estado:</label>
+                        <div class="md-form mt-3 text-left">
+                            <!-- Default switch -->
+                            Estado:
+                            <label class="switch">
+                                <input type="checkbox" [formControl]="status">
+                                <span class="slider round"></span>
+                            </label>
+
                             <div class="msg-danger" *ngFor="let error of errors.status">
                                 {{ errors.status }}
                             </div>

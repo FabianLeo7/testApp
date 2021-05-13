@@ -14,9 +14,10 @@ import { ActivatedRoute } from '@angular/router';
 export class EditComponent implements OnInit {
 
   public validatingForm: any;
-
   public countries: any = [];
 
+  public message_success = '';
+  public message_error = '';
   public sending: boolean = false;
 
   public errors = {
@@ -71,6 +72,8 @@ export class EditComponent implements OnInit {
       position: new FormControl(data.position),
       commission: new FormControl(data.commission),
     });
+
+    this.setArea(data.area);
 
   }
 
@@ -134,9 +137,16 @@ export class EditComponent implements OnInit {
     return this.validatingForm.get('commission');
   }
 
+  setArea(data: string) {
+    this.validatingForm.get('area').value = data;
+  }
+
   onSubmit() {
 
     this.sending = true;
+    this.message_success = '';
+    this.message_error = '';
+
     this.errors = {
       name: [],
       date_birth: [],
@@ -159,17 +169,20 @@ export class EditComponent implements OnInit {
 
   hanldeResponse(data: any) {
     this.sending = false;
+    this.message_success = 'Empleado actualizado exitosamente.'
+
   }
 
   handleError(error: HttpErrorResponse) {
     this.sending = false;
     if (error.status == 422) {
       this.setErrors(error.error.errors);
+      this.message_error = error.error.message;
 
     } else if (error.status == 500) {
-
+      this.message_error = 'Error: comunícate con el administrador.';
     } else if (error.status == 401) {
-
+      this.message_error = 'Sessión expirada';
     }
   }
 

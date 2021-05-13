@@ -132,4 +132,8 @@ export class ShowComponent implements OnInit {
   get commission() {
     return this.validatingForm.get('commission');
   }
+
+  setArea(data: string) {
+    this.validatingForm.get('area').value = data;
+  }
 }
