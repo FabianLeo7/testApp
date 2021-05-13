@@ -26,21 +26,21 @@
                     <td>{{el.first}}</td>
                     <td>{{el.last}}</td>
                     <td>
-                        <button type="button" mdbBtn color="light" size="sm" mdbWavesEffect>
+                        <a [routerLink]="['/edit']" routerLinkActive="router-link-active"  mdbBtn color="light" size="sm" mdbWavesEffect>
                             <mdb-icon fas icon="edit"></mdb-icon>
-                        </button>
-                        <button type="button" mdbBtn color="light" size="sm" mdbWavesEffect>
+                        </a>
+                        <a [routerLink]="['/show']" routerLinkActive="router-link-active"  mdbBtn color="light" size="sm" mdbWavesEffect>
                             <mdb-icon fas icon="eye"></mdb-icon>
-                        </button>
-                        <button type="button" mdbBtn color="light" size="sm" mdbWavesEffect>
+                        </a>
+                        <a [routerLink]="['/create']" mdbBtn color="light" size="sm" mdbWavesEffect>
                             <mdb-icon fas icon="plus"></mdb-icon>
-                        </button>
+                        </a>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <button type="button" mdbBtn color="light" mdbWavesEffect>Nuevo Empleado</button>
+    <a [routerLink]="['/create']" routerLinkActive="router-link-active"  mdbBtn color="light" mdbWavesEffect>Nuevo Empleado</a>
 
 </div>
