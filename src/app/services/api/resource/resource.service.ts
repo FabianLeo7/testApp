@@ -20,8 +20,8 @@ export class ResourceService {
   /**
    * Display a listing of the resource.
    */
-  index(search : any = '', page : number = 1) {
-    let params = new HttpParams().set('search', search).set('page', page.toString());
+  index(search : any = '', page : number = 1, order_name : string = 'name', order : string = 'asc') {
+    let params = new HttpParams().set('search', search).set('page', page.toString()).set('order_name', order_name).set('order', order);
  
     return this.Http.get(this.api_url + this.url, {params, observe: 'response'} ).pipe(
       retry(3),

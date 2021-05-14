@@ -15,6 +15,11 @@ export class EmployeesComponent implements OnInit {
   public employees: Array<any> = [];
   public search: String = '';
 
+  public orderby = {
+    name: 'name',
+    order: 'asc'
+  };
+
   DeleteEmployeeModalRef = new MDBModalRef;
 
   public sending: Boolean = false;
@@ -47,14 +52,21 @@ export class EmployeesComponent implements OnInit {
     this.getEmployees();
   }
 
+  setOrderBy(name: string, order: string){
+    this.orderby.name = name;
+    this.orderby.order = order;
+
+    this.getEmployees();
+  }
+
   /**
-  * Get all roles
+  * Get employees
   */
   getEmployees(page: number = 1) {
     this.sending = true;
 
     this.Resource.url = 'employees';
-    this.Resource.index(this.search, page).subscribe(
+    this.Resource.index(this.search, page, this.orderby.name, this.orderby.order).subscribe(
       data => this.handleResponse(data.body),
       error => this.handleError(error)
     );

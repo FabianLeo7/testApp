@@ -1,4 +1,4 @@
-<div class="container ">
+<div class="container">
 
 
     <!-- Search form -->
@@ -17,7 +17,43 @@
         <table class="table">
             <thead class="text-center rgba-black-slight">
                 <tr>
-                    <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                    <th>
+                        <div class="row">
+                            <div class="col">
+                                Nombre
+                            </div>
+                            <div class="col-1 caret-content">
+                                <mdb-icon fas icon="caret-up" class="up" (click)="setOrderBy('name', 'asc')"></mdb-icon>
+                                <mdb-icon fas icon="caret-down" class="down" (click)="setOrderBy('name', 'desc')"></mdb-icon>
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="row">
+                            <div class="col">
+                                Edad
+                            </div>
+                            <div class="col-1 caret-content">
+                                <mdb-icon fas icon="caret-up" class="up" (click)="setOrderBy('date_birth', 'asc')"></mdb-icon>
+                                <mdb-icon fas icon="caret-down" class="down" (click)="setOrderBy('date_birth', 'desc')"></mdb-icon>
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="row">
+                            <div class="col">
+                                Fecha de contratación
+                            </div>
+                            <div class="col-1 caret-content">
+                                <mdb-icon fas icon="caret-up" class="up" (click)="setOrderBy('hiren_date', 'asc')"></mdb-icon>
+                                <mdb-icon fas icon="caret-down" class="down" (click)="setOrderBy('hiren_date', 'desc')"></mdb-icon>
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        Acciones
+                    </th>
+                    <!-- <th *ngFor="let head of headElements" scope="col">{{head}} </th> -->
                 </tr>
             </thead>
             <tbody>

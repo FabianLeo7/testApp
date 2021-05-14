@@ -1,0 +1,20 @@
+.caret-content{
+    .up, .down{
+        font-size: 25px;
+    }
+
+    .up:hover, .down:hover{
+        cursor: pointer;
+        color: rgb(126, 126, 126);
+    }
+
+    .up {
+        position: absolute;
+        top: -6px;
+    }
+    
+    .down {
+        position: absolute;
+        top: 6px;
+    }
+}
